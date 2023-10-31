@@ -1,10 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
 const config = require('./config/config');
-require('dotenv').config();
 
 
 
@@ -27,8 +27,9 @@ db.once('open', () => {
 const blogsRouter = require('./routes/blogs');
 const usersRouter = require('./routes/auth');
 
-app.use('/blogs', blogsRouter);
-app.use('/auth', usersRouter); 
+app.use('/api/auth', usersRouter); 
+app.use('/api/blog', blogsRouter);
+
 
 // Start the Express server
 app.listen(port, () => {
